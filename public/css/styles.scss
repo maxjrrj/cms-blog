@@ -1,0 +1,15 @@
+.card-login {
+    margin: auto;
+    width: 50%;
+
+    .image {
+        width: 100px;
+        height: 100px;
+        padding-left: calc(50% - 60px);
+        img {
+            width: 100px;
+            height: 100px;
+            margin: auto;
+        }
+    }
+}
