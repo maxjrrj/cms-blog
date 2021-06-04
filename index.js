@@ -79,7 +79,7 @@ app.get('/logout', (req, res) => {
 
 // GERENCIAR / MANIPULAR POSTS
 app.get('/novopost', authUser,(req, res)=> {
-    res.render('novoPost')
+    res.render('postagens/novoPost')
 })
 
 app.post('/novoPost', (req, res) => {
@@ -102,7 +102,7 @@ app.post('/novoPost', (req, res) => {
 app.get('/controlepost', authUser, (req, res) => {
     const achou = Post.findAll({ raw : true}).then(achou =>{
         console.log(achou)
-        res.render('controlePost', {
+        res.render('postagens/controlePost', {
             posts: achou
         })
     })
@@ -113,7 +113,7 @@ app.get('/controlepost', authUser, (req, res) => {
 app.get('/editpost/:id', authUser, (req, res) => {
     id = req.params.id
     const post = Post.findOne({where: {postid: id}}).then(post =>{
-    res.render('editPost', { 
+    res.render('postagens/editPost', { 
             post: post
         })
     })
@@ -133,7 +133,7 @@ app.post('/attpost', authUser, (req, res) => {
 
 // GERENCIAR / MANIPULAR CATEGORIAS
 app.get('/novacategoria', authUser, (req, res)=> {
-    res.render('novaCategoria')
+    res.render('categorias/novaCategoria')
 })
 
 app.post('/novacategoria', (req, res) => {
@@ -144,7 +144,7 @@ app.post('/novacategoria', (req, res) => {
         titulocategoria: titulocategoria,
         idcategoria: idcategoria
     }).then(() => {
-        res.redirect('/novacategoria')
+        res.redirect('/categorias/novacategoria')
     })
 
 
@@ -152,7 +152,7 @@ app.post('/novacategoria', (req, res) => {
 
 app.get('/controlecategoria', authUser, (req, res) => {
         Categoria.findAll({raw: true}).then(categorias =>{
-            res.render('controleCategoria', {
+            res.render('categorias/controleCategoria', {
                 categorias: categorias
             })
         })
@@ -171,7 +171,7 @@ app.get('/dropcategoria/:id', authUser, (req, res) => {
 
 // GERENCIAR / MANIPULAR USUARIOS
 app.get('/novousuario', authUser, (req, res)=> {
-    res.render('novoUsuario')
+    res.render('usuarios/novoUsuario')
 })
 
 app.post('/novousuario', (req, res) => {
@@ -200,7 +200,7 @@ app.post('/novousuario', (req, res) => {
 
 app.get('/controleusuario', authUser, (req, res) => {
     User.findAll().then(users => {
-        res.render('controleUsuario',{
+        res.render('usuarios/controleUsuario',{
             users: users
         })
     })
